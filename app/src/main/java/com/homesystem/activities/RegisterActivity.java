@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.register_etPassword);
         etConfirmPassword = findViewById(R.id.register_etConfirmPassword);
         btnCreateAccount = findViewById(R.id.register_btnRegister);
+
+        // Add back to login functionality
+        TextView backToLogin = findViewById(R.id.register_tvBackToLogin);
+        backToLogin.setOnClickListener(v -> {
+            finish(); // Go back to login
+        });
     }
 
     private boolean validateFields() {

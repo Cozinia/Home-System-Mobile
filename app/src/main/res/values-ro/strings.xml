@@ -18,5 +18,8 @@
     <string name="reset_password_tv_title">Resetează parola</string>
     <string name="email">Email</string>
     <string name="welcome_back_to_your_smart_home">Bine ai venit în universul smart!</string>
+    <string name="already_have_an_account">Ai deja cont?</string>
+    <string name="sign_in">Autentifică-te</string>
+    <string name="remember_your_password">Ți-ai amintit parola?</string>
 
 </resources>

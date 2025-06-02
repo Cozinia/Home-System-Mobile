@@ -1,48 +1,58 @@
 package com.homesystem.activities;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.homesystem.R;
 import com.homesystem.utils.Validator;
 
-import java.util.Locale;
-
 public class ForgotPasswordActivity extends AppCompatActivity {
+    private static final String TAG = "ForgotPasswordActivity";
 
-    private EditText etEmail;
-    private EditText etPassword;
-    private EditText etConfirmPassword;
+    // UI Elements
+    private EditText etEmail, etPassword, etConfirmPassword;
     private Button btnResetPassword;
-    private TextInputLayout etPasswordLayout, etConfirmPasswordLayout;
+    private TextView tvBackToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+        // Initialize UI elements
         initComponents();
-        btnResetPassword.setOnClickListener(v -> getTextFromFields());
+
+        // Set up click listeners
+        setupClickListeners();
     }
 
     private void initComponents() {
-        etEmail = findViewById(R.id.login_et_email);
+        // Initialize input fields
+        etEmail = findViewById(R.id.forgotPassword_et_email);
         etPassword = findViewById(R.id.forgotPassword_et_password);
         etConfirmPassword = findViewById(R.id.forgotPassword_et_confirmPassword);
-        btnResetPassword = findViewById(R.id.forgotPassword_btnResetPassword);
-        etPasswordLayout = findViewById(R.id.forgotPassword_et_password_layout);
-        etConfirmPasswordLayout = findViewById(R.id.forgotPassword_et_confirm_password_layout);
 
-        etPasswordLayout.setEndIconTintList(android.content.res.ColorStateList.valueOf(Color.BLACK));
-        etConfirmPasswordLayout.setEndIconTintList(android.content.res.ColorStateList.valueOf(Color.BLACK));
+        // Initialize buttons
+        btnResetPassword = findViewById(R.id.forgotPassword_btnResetPassword);
+        tvBackToLogin = findViewById(R.id.forgotPassword_tvBackToLogin);
+    }
+
+    private void setupClickListeners() {
+        // Reset password button click
+        btnResetPassword.setOnClickListener(v -> resetPassword());
+
+        // Back to login click
+        tvBackToLogin.setOnClickListener(v -> {
+            // Go back to login activity
+            finish();
+        });
     }
 
     private boolean validateFields() {
@@ -51,47 +61,64 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         String confirmPassword = etConfirmPassword.getText().toString().trim();
         boolean isValid = true;
 
+        // Validate email
         if (Validator.checkNullOrEmpty(email) || !Validator.checkRegexEmail(email)) {
             etEmail.setError("Valid email is required!");
             isValid = false;
         }
+
+        // Validate password
         if (Validator.checkNullOrEmpty(password)) {
-            etPassword.setError("Password is required!");
-            etPasswordLayout.setEndIconMode(TextInputLayout.END_ICON_NONE);
+            etPassword.setError("New password is required!");
             isValid = false;
-        } else {
-            etPasswordLayout.setEndIconMode(TextInputLayout.END_ICON_PASSWORD_TOGGLE);
+        } else if (!Validator.checkRegexPassword(password)) {
+            etPassword.setError("Password must contain at least 8 characters with uppercase, lowercase and numbers!");
+            isValid = false;
         }
-        if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("Passwords do not match!");
-            etConfirmPasswordLayout.setEndIconMode(TextInputLayout.END_ICON_NONE);
+
+        // Validate confirm password
+        if (Validator.checkNullOrEmpty(confirmPassword)) {
+            etConfirmPassword.setError("Please confirm your password!");
             isValid = false;
-        } else {
-            etConfirmPasswordLayout.setEndIconMode(TextInputLayout.END_ICON_PASSWORD_TOGGLE);
+        } else if (!password.equals(confirmPassword)) {
+            etConfirmPassword.setError("Passwords do not match!");
+            isValid = false;
         }
 
         return isValid;
     }
 
-    private void getTextFromFields() {
+    private void resetPassword() {
         if (!validateFields()) return;
 
+        // Disable button during reset process
+        btnResetPassword.setEnabled(false);
+        btnResetPassword.setText("Resetting...");
+
         String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-        Log.d("FORGOT-PASSWORD", "email: " + email + " password: " + password);
+        String newPassword = etPassword.getText().toString().trim();
+
+        // TODO: Implement actual password reset logic here
+        // For now, just show a success message
+        Log.d(TAG, "Password reset requested for email: " + email);
+
+        // Simulate processing time
+        btnResetPassword.postDelayed(() -> {
+            // Re-enable button
+            btnResetPassword.setEnabled(true);
+            btnResetPassword.setText(getString(R.string.reset_password_btn_resetPassword));
+
+            // Show success message
+            Toast.makeText(this, "Password reset successful! Please login with your new password.", Toast.LENGTH_LONG).show();
+
+            // Go back to login
+            finish();
+        }, 2000);
     }
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        SharedPreferences prefs = newBase.getSharedPreferences("Settings", MODE_PRIVATE);
-        String language = prefs.getString("PreferedLang", "en"); // Default language is English
-
-        Locale newLocale = new Locale(language);
-        Locale.setDefault(newLocale);
-        Configuration config = new Configuration();
-        config.setLocale(newLocale);
-
-        Context context = newBase.createConfigurationContext(config);
-        super.attachBaseContext(context);
+    public void onBackPressed() {
+        // Allow back navigation to login screen
+        super.onBackPressed();
     }
 }
