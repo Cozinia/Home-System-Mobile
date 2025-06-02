@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.HomeSystem" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#6200EE</item> <!-- Primary color (default) -->
+        <item name="colorOnPrimary">@color/primary_text</item> <!-- Text color based on theme -->
+        <item name="btnTextColorPrimary">@color/text_color_primary</item> <!-- Text color based on theme -->
+        <item name="android:textColorPrimary">@color/primary_text</item> <!-- Default text color -->
+    </style>
+
+    <style name="Theme.HomeSystem" parent="Base.Theme.HomeSystem" />
+</resources>

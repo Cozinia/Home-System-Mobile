@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.homesystem.activities.MainActivity">
+
+
+    <TextView
+        android:id="@+id/login_tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/et_authentification"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_et_email_layout"
+        android:layout_width="316dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_tvLogin"
+        android:gravity="center"
+        app:layout_constraintVertical_bias="0.041">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_et_email"
+            android:layout_width="307dp"
+            android:layout_height="66dp"
+            android:gravity="center"
+            android:hint="@string/et_username"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_etPassword_layout"
+        android:layout_width="316dp"
+        android:layout_height="73dp"
+        android:gravity="center"
+        app:endIconMode="password_toggle"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_et_email_layout"
+        app:layout_constraintVertical_bias="0.0"
+        app:passwordToggleEnabled="true">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_etPassword"
+            android:layout_width="307dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:hint="@string/et_password"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_et_email"
+            app:layout_constraintVertical_bias="0.076" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_btnLogin"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/btn_login"
+        android:background="@drawable/rounded_button"
+        android:textColor="?attr/btnTextColorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_etPassword_layout"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <Button
+        android:id="@+id/login_btnForgotPassword"
+        android:layout_width="162dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="36dp"
+        android:background="@android:color/transparent"
+        android:text="@string/btn_forgot_password"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/login_btnCreateAccount"
+        app:layout_constraintTop_toBottomOf="@+id/login_btnLogin"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/login_btnCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/btn_create_account"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btnLogin"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <ImageButton
+        android:id="@+id/login_ibEnLang"
+        android:layout_width="49dp"
+        android:layout_height="47dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/en_lang"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btnForgotPassword"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <ImageButton
+        android:id="@+id/login_ibRoLang"
+        android:layout_width="49dp"
+        android:layout_height="47dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btnCreateAccount"
+        app:layout_constraintVertical_bias="0.414"
+        app:srcCompat="@drawable/ro_lang" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

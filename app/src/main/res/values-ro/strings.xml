@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Safe Home</string>
+    <string name="et_username">Nume utilizator</string>
+    <string name="btn_login">Autentificare</string>
+    <string name="btn_forgot_password">Am uitat parola</string>
+    <string name="btn_create_account">Creează cont</string>
+    <string name="et_password">Parolă</string>
+    <string name="et_authentification">Autentificare</string>
+
+    <string name="register_tv_create_account">Creează cont</string>
+    <string name="register_et_first_name">Prenume</string>
+    <string name="register_et_last_name">Nume</string>
+    <string name="register_et_email">Email</string>
+    <string name="register_et_password">Parolă</string>
+    <string name="register_et_confirm_password">Confirmă parola</string>
+    <string name="btn_register_account">Creează cont</string>
+    <string name="reset_password_btn_resetPassword">Resetează parola</string>
+    <string name="reset_password_tv_title">Resetează parola</string>
+    <string name="email">Email</string>
+
+</resources>
