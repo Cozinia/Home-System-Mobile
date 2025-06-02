@@ -76,8 +76,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     private void showNotification(String title, String body, java.util.Map<String, String> data) {
         Intent intent = new Intent(this, MainActivity.class);
-
-        // Add data to intent if needed
         if (data != null) {
             for (java.util.Map.Entry<String, String> entry : data.entrySet()) {
                 intent.putExtra(entry.getKey(), entry.getValue());
@@ -126,7 +124,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
     private void sendRegistrationToServer(String token) {
-        // TODO: Implement server communication to store the token
         Log.d(TAG, "Token ready to send to server");
     }
 }

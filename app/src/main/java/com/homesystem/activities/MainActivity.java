@@ -1,13 +1,20 @@
 package com.homesystem.activities;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import java.util.Locale;
+
 import android.Manifest;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -29,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
+    // UI Elements
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private Button registerTextView;
+    private Button forgotPasswordTextView;
+    private ImageButton englishLanguageButton;
+    private ImageButton romanianLanguageButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Load saved language
+        loadSavedLanguage();
+
+        // Initialize UI elements
+        initializeViews();
+
         // Initialize permission launcher
         requestPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
@@ -49,9 +71,81 @@ public class MainActivity extends AppCompatActivity {
         // Check and request notification permission
         checkNotificationPermission();
 
-        // Navigate to login
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        startActivity(intent);
+        // Set up click listeners
+        setupClickListeners();
+    }
+
+    private void initializeViews() {
+        // Match the IDs from your existing layout
+        emailEditText = findViewById(R.id.login_et_email);
+        passwordEditText = findViewById(R.id.login_etPassword);
+        loginButton = findViewById(R.id.login_btnLogin);
+        registerTextView = findViewById(R.id.login_btnCreateAccount);
+        forgotPasswordTextView = findViewById(R.id.login_btnForgotPassword);
+        englishLanguageButton = findViewById(R.id.login_ibEnLang);
+        romanianLanguageButton = findViewById(R.id.login_ibRoLang);
+    }
+
+    private void setupClickListeners() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performLogin();
+            }
+        });
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to register activity
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to forgot password activity
+                Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Language change buttons
+        englishLanguageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeLanguage("en");
+            }
+        });
+
+        romanianLanguageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeLanguage("ro");
+            }
+        });
+    }
+
+    private void performLogin() {
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        // Basic validation
+        if (email.isEmpty()) {
+            emailEditText.setError("Email is required");
+            return;
+        }
+
+        if (password.isEmpty()) {
+            passwordEditText.setError("Password is required");
+            return;
+        }
+
+        // For now, just show a toast
+        Toast.makeText(this, "Login functionality to be implemented", Toast.LENGTH_SHORT).show();
+
     }
 
     private void checkNotificationPermission() {
@@ -97,7 +191,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendTokenToServer(String token) {
-        // TODO: Implement server communication to store the token
         Log.d(TAG, "Token ready to send to server");
+    }
+
+    private void changeLanguage(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+
+        // Update configuration
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        // Save the language preference
+        getSharedPreferences("AppSettings", MODE_PRIVATE)
+                .edit()
+                .putString("language", languageCode)
+                .apply();
+
+        // Restart the activity to apply language changes
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
+    }
+
+    private void loadSavedLanguage() {
+        String savedLanguage = getSharedPreferences("AppSettings", MODE_PRIVATE)
+                .getString("language", "en"); // Default to English
+
+        if (!savedLanguage.equals("en")) {
+            changeLanguageWithoutRestart(savedLanguage);
+        }
+    }
+
+    private void changeLanguageWithoutRestart(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }
