@@ -47,9 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_HomeSystem);
         super.onCreate(savedInstanceState);
+        com.homesystem.utils.SessionManager sessionManager = new com.homesystem.utils.SessionManager(this);
+        if (sessionManager.isLoggedIn()) {
+            // User is already logged in, redirect to dashboard
+            Intent intent = new Intent(this, com.homesystem.activities.DashboardActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -76,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        // Match the IDs from your existing layout
+        // Match the IDs from your existing layout - EXACT SAME AS BEFORE
         emailEditText = findViewById(R.id.login_et_email);
         passwordEditText = findViewById(R.id.login_etPassword);
         loginButton = findViewById(R.id.login_btnLogin);
@@ -143,11 +153,52 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // For now, just show a toast
-        Toast.makeText(this, "Login functionality to be implemented", Toast.LENGTH_SHORT).show();
+        // Validate email format
+        if (!com.homesystem.utils.Validator.checkRegexEmail(email)) {
+            emailEditText.setError("Please enter a valid email");
+            return;
+        }
 
+        // Disable login button during login process
+        loginButton.setEnabled(false);
+        loginButton.setText("Signing in...");
+
+        // Attempt login
+        com.homesystem.repositories.UserRepository.loginUser(email, password, new com.homesystem.repositories.UserLoginCallback() {
+            @Override
+            public void onSuccess(com.homesystem.models.User user) {
+                Log.d(TAG, "Login successful for user: " + user.getEmail());
+
+                // Create session
+                com.homesystem.utils.SessionManager sessionManager = new com.homesystem.utils.SessionManager(MainActivity.this);
+                sessionManager.createLoginSession(user);
+
+                // Show success message
+                Toast.makeText(MainActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+
+                // Navigate to dashboard
+                Intent intent = new Intent(MainActivity.this, com.homesystem.activities.DashboardActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(TAG, "Login failed: " + error);
+
+                // Re-enable login button
+                loginButton.setEnabled(true);
+                loginButton.setText("Sign In");
+
+                // Show error message
+                Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
+
+                // Clear password field for security
+                passwordEditText.setText("");
+            }
+        });
     }
-
     private void checkNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
@@ -237,4 +288,6 @@ public class MainActivity extends AppCompatActivity {
 
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
+
+
 }

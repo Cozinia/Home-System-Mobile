@@ -6,5 +6,9 @@
         <item name="android:textColorPrimary">@color/primary_text</item> <!-- Default text color -->
     </style>
 
+    <style name="SplashTheme" parent="Theme.HomeSystem">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="Theme.HomeSystem" parent="Base.Theme.HomeSystem" />
 </resources>

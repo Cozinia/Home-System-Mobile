@@ -17,5 +17,6 @@
     <string name="reset_password_btn_resetPassword">Resetează parola</string>
     <string name="reset_password_tv_title">Resetează parola</string>
     <string name="email">Email</string>
+    <string name="welcome_back_to_your_smart_home">Bine ai venit în universul smart!</string>
 
 </resources>
