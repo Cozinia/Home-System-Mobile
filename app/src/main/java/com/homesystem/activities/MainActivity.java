@@ -224,18 +224,19 @@ public class MainActivity extends AppCompatActivity {
                         String token = task.getResult();
                         Log.d(TAG, "FCM Token: " + token);
 
-                        // Send token to your server
                         sendTokenToServer(token);
                     }
                 });
 
-        // Subscribe to topics if needed
-        FirebaseMessaging.getInstance().subscribeToTopic("home_alerts")
+        // Subscribe to alarm alerts topic
+        FirebaseMessaging.getInstance().subscribeToTopic("alarm_alerts")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "Subscribed to home_alerts topic");
+                            Log.d(TAG, "Subscribed to alarm_alerts topic");
+                        } else {
+                            Log.e(TAG, "Failed to subscribe to alarm_alerts topic");
                         }
                     }
                 });
