@@ -1,6 +1,5 @@
-package com.homesystem.activities;
+package com.homesystem.activities.forgot_password;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;

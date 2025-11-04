@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Central Unit Base -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M2,9h20c1.1,0 2,0.9 2,2v8c0,1.1 -0.9,2 -2,2H2c-1.1,0 -2,-0.9 -2,-2v-8c0,-1.1 0.9,-2 2,-2z"/>
+
+    <!-- Antenna -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M11,3h2v6h-2z"/>
+
+    <!-- Signal waves (simplified) -->
+    <path
+        android:fillColor="#FF000000"
+        android:strokeWidth="1"
+        android:pathData="M8,5c0,2.21 1.79,4 4,4s4,-1.79 4,-4"
+        android:strokeColor="#FF000000"
+        android:fillType="nonZero"/>
+
+    <!-- Status LED indicators (using small rectangles instead of circles) -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M5,12h2v2h-2z"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M8,12h2v2h-2z"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M5,15h2v2h-2z"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M8,15h2v2h-2z"/>
+
+    <!-- Display screen -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M13,12h7v4h-7z"/>
+
+    <!-- Screen content (small line) -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M15,13.5h3v1h-3z"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M15,15h2v0.5h-2z"/>
+</vector>

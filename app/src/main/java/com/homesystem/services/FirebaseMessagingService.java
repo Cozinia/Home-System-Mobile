@@ -11,7 +11,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
 import com.homesystem.R;
-import com.homesystem.activities.MainActivity;
+import com.homesystem.activities.login.MainActivity;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 

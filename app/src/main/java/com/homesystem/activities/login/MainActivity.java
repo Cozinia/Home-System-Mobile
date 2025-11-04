@@ -1,4 +1,4 @@
-package com.homesystem.activities;
+package com.homesystem.activities.login;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -29,7 +29,11 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.homesystem.utils.HomeSystemApplication;
 import com.homesystem.R;
+import com.homesystem.activities.forgot_password.ForgotPasswordActivity;
+import com.homesystem.activities.register.RegisterActivity;
+import com.homesystem.activities.dashboard.DashboardActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,15 +52,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_HomeSystem);
+
+        // Apply saved language BEFORE calling super.onCreate()
+        loadSavedLanguage();
+
         super.onCreate(savedInstanceState);
+
         com.homesystem.utils.SessionManager sessionManager = new com.homesystem.utils.SessionManager(this);
         if (sessionManager.isLoggedIn()) {
             // User is already logged in, redirect to dashboard
-            Intent intent = new Intent(this, com.homesystem.activities.DashboardActivity.class);
+            Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
             finish();
             return;
         }
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -65,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Load saved language
-        loadSavedLanguage();
 
         // Initialize UI elements
         initializeViews();
@@ -177,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
 
                 // Navigate to dashboard
-                Intent intent = new Intent(MainActivity.this, com.homesystem.activities.DashboardActivity.class);
+                Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -199,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void checkNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
@@ -246,49 +254,31 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Token ready to send to server");
     }
 
+    // UPDATED: Use HomeSystemApplication for consistent language handling
     private void changeLanguage(String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-
-        Resources resources = getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-
-        // Update configuration
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
         // Save the language preference
         getSharedPreferences("AppSettings", MODE_PRIVATE)
                 .edit()
                 .putString("language", languageCode)
                 .apply();
 
-        // Restart the activity to apply language changes
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
+        // Apply language change using the Application class method
+        HomeSystemApplication.setAppLocale(this, languageCode);
 
+        // Restart the entire app to apply changes everywhere
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    // UPDATED: Use HomeSystemApplication for consistent language loading
     private void loadSavedLanguage() {
         String savedLanguage = getSharedPreferences("AppSettings", MODE_PRIVATE)
                 .getString("language", "en"); // Default to English
 
-        if (!savedLanguage.equals("en")) {
-            changeLanguageWithoutRestart(savedLanguage);
-        }
+        // Apply the saved language using the Application class method
+        HomeSystemApplication.setAppLocale(this, savedLanguage);
     }
-
-    private void changeLanguageWithoutRestart(String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-
-        Resources resources = getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-    }
-
-
 }

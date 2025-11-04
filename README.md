@@ -252,12 +252,12 @@ client.on('message', async (topic, message) => {
 
 | Authentication Flow | Dashboard & Monitoring |
 |:---:|:---:|
-| ![Login](screenshots/login_screen.jpg) | ![Dashboard](screenshots/dashboard_screen.jpg) |
+| <img src="screenshots/login_screen.jpg" alt="Login" width="220"> | <img src="screenshots/dashboard_screen.jpg" alt="Dashboard" width="220"> |
 | Modern login with Material Design | Real-time sensor status & controls |
 
 | Registration | Security Notifications |
 |:---:|:---:|
-| ![Register](screenshots/register_screen.jpg) | ![Notification](screenshots/notification_sample.jpg) |
+| <img src="screenshots/register_screen.jpg" alt="Register" width="220"> | <img src="screenshots/notification_sample.jpg" alt="Notification" width="220"> |
 | Clean registration form with validation | Instant security alerts with actions |
 
 ## 🔧 Technical Implementation

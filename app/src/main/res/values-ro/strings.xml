@@ -6,20 +6,119 @@
     <string name="btn_create_account">Creează cont</string>
     <string name="et_password">Parolă</string>
     <string name="et_authentification">Autentificare</string>
-
-    <string name="register_tv_create_account">Creează cont</string>
+    <string name="register_tv_create_account">Creează un cont</string>
     <string name="register_et_first_name">Prenume</string>
     <string name="register_et_last_name">Nume</string>
-    <string name="register_et_email">Email</string>
+    <string name="register_et_email">Adresă de email</string>
     <string name="register_et_password">Parolă</string>
-    <string name="register_et_confirm_password">Confirmă parola</string>
+    <string name="register_et_confirm_password">Confirmare parolă</string>
     <string name="btn_register_account">Creează cont</string>
     <string name="reset_password_btn_resetPassword">Resetează parola</string>
     <string name="reset_password_tv_title">Resetează parola</string>
-    <string name="email">Email</string>
-    <string name="welcome_back_to_your_smart_home">Bine ai venit în universul smart!</string>
-    <string name="already_have_an_account">Ai deja cont?</string>
-    <string name="sign_in">Autentifică-te</string>
-    <string name="remember_your_password">Ți-ai amintit parola?</string>
+    <string name="email">Adresă de email</string>
+    <string name="welcome_back_to_your_smart_home">Bine ați venit în universul smart!</string>
+    <string name="already_have_an_account">Dețineți deja un cont?</string>
+    <string name="sign_in">Autentificați-vă</string>
+    <string name="remember_your_password">V-ați amintit parola?</string>
 
+    <!-- AddDeviceActivity strings - Updated and added missing ones -->
+    <string name="add_new_device">Adaugă dispozitiv</string>
+    <string name="follow_the_steps_to_set_up_your_device">Vă rugăm să urmați acești pași pentru înregistrarea dispozitivului</string>
+    <string name="step_1_of_4">Pasul 1 din 4</string>
+    <string name="step_2_of_4">Pasul 2 din 4</string>
+    <string name="step_3_of_4">Pasul 3 din 4</string>
+    <string name="step_4_of_4">Pasul 4 din 4</string>
+
+    <!-- WiFi Configuration -->
+    <string name="enter_wifi_credentials">Introduceți credențialele rețelei</string>
+    <string name="your_device_will_use_this_wifi_network_to_connect_to_the_internet">Dispozitivul dumneavoastră va utiliza aceste credențiale pentru conectarea la internet</string>
+    <string name="auto_detect_wifi">Detectare automată WiFi</string>
+    <string name="wifi_network_name_ssid">Nume rețea (SSID)</string>
+    <string name="wifi_password">Parolă rețea</string>
+
+    <!-- AP Connect -->
+    <string name="connect_to_device_wifi">Conectați-vă la rețeaua WiFi a dispozitivului</string>
+    <string name="now_connect_your_phone_to_the_device_s_wifi_network">Vă rugăm să vă conectați telefonul la rețeaua WiFi a dispozitivului</string>
+    <string name="connect_to_device_network">Conectați-vă la rețeaua dispozitivului</string>
+    <string name="network">Rețea:</string>
+    <string name="password">Parolă:</string>
+    <string name="connection_instructions">1. Deschideți setările WiFi 2. Conectați-vă la rețeaua de mai sus 3. Reveniți și apăsați \'M-am conectat\'</string>
+    <string name="instructions">Instrucțiuni:</string>
+    <string name="_1_go_to_your_phone_s_wifi_settings">1. Accesați setările WiFi ale telefonului</string>
+    <string name="_2_look_for_this_network">2. Căutați rețeaua:</string>
+    <string name="_3_use_this_password">3. Utilizați această parolă:</string>
+    <string name="_4_come_back_here_and_tap_i_m_connected">4. Reveniți aici și apăsați „M-am conectat"</string>
+
+    <!-- Device Setup -->
+    <string name="configuring_device">Configurarea dispozitivului</string>
+    <string name="please_wait_while_we_set_up_your_device_with_the_wifi_credentials">Vă rugăm să așteptați până la finalizarea procesului de configurare</string>
+    <string name="setting_up">Așteptați…</string>
+
+    <!-- Success -->
+    <string name="success">🎉 Configurare finalizată!</string>
+    <string name="your_device_has_been_successfully_added_to_your_home_system">Dispozitivul dumneavoastră a fost adăugat cu succes!</string>
+    <string name="you_can_now_monitor_and_control_it_from_the_dashboard">Acum îl puteți monitoriza și controla din panoul de control</string>
+
+    <!-- Navigation and buttons -->
+    <string name="previous">Înapoi</string>
+    <string name="next">Înainte</string>
+    <string name="finish">Finalizare</string>
+    <string name="step">Pasul</string>
+    <string name="of">din</string>
+    <string name="i_m_connected">M-am conectat</string>
+    <string name="cancel">Anulează</string>
+
+    <!-- Dashboard strings -->
+    <string name="welcome_back">Bine ați revenit!</string>
+    <string name="control_your_smart_home_from_here">Controlați-vă casa inteligentă de aici</string>
+    <string name="central_units">Unități centrale</string>
+    <string name="active_sensors">Senzori activi</string>
+    <string name="quick_actions">Acțiuni rapide</string>
+    <string name="good_day">Bună ziua!</string>
+    <string name="manage_your_home_control_units">Gestionați unitățile centrale ale locuinței</string>
+    <string name="monitor_all_your_sensors_status">Monitorizați starea tuturor senzorilor</string>
+    <string name="add_device">Adaugă dispozitiv</string>
+    <string name="profile">Profil</string>
+    <string name="home_page">Acasă</string>
+
+    <!-- Profile and settings -->
+    <string name="current_password">Parolă actuală</string>
+    <string name="new_password">Parolă nouă</string>
+    <string name="confirm_new_password">Confirmare parolă</string>
+    <string name="save_changes">Salvează modificările</string>
+    <string name="personal_information">Informații personale</string>
+    <string name="edit_profile">Editează profilul</string>
+    <string name="first_name_required">Prenumele este obligatoriu</string>
+    <string name="last_name_required">Numele este obligatoriu</string>
+    <string name="current_password_required">Parola actuală este obligatorie</string>
+    <string name="new_password_required">Parola nouă este obligatorie</string>
+    <string name="password_requirements">Parola trebuie să conțină minim 8 caractere</string>
+    <string name="confirm_password_required">Confirmarea parolei este obligatorie</string>
+    <string name="passwords_do_not_match">Parolele nu coincid</string>
+    <string name="current_password_incorrect">Parola actuală este incorectă</string>
+    <string name="saving">Se salvează…</string>
+    <string name="profile_updated_successfully">Profilul a fost actualizat cu succes</string>
+    <string name="error_updating_profile">Eroare la actualizarea profilului</string>
+    <string name="profile_settings">Setări profil</string>
+    <string name="change_name_and_password">Modifică numele și parola</string>
+    <string name="app_settings">Setări aplicație</string>
+    <string name="language_settings">Modifică limba</string>
+    <string name="english">Engleză</string>
+    <string name="account_management">Gestionare cont</string>
+    <string name="logout">Deconectare</string>
+    <string name="sign_out_of_your_account">Deconectare din cont</string>
+    <string name="delete_account">Șterge contul</string>
+    <string name="permanently_delete_your_account">Șterge definitiv contul</string>
+    <string name="română">Română</string>
+    <string name="logged_out_successfully">Deconectare realizată cu succes</string>
+    <string name="first_name">Prenume</string>
+    <string name="last_name">Nume</string>
+    <string name="change_password">Schimbă parola</string>
+    <string name="open_wifi_settings">Deschide setările WiFi</string>
+    <string name="add_your_first_central_unit_to_get_started">Adaugă o unitate centrală</string>
+    <string name="no_central_unit_found">Nu am găsit nicio unitate centrală</string>
+    <string name="disarm_system">Dezarmează</string>
+    <string name="arm_system">Armează</string>
+    <string name="system_armed">Armat</string>
+    <string name="system_disarmed">Dezarmat</string>
 </resources>

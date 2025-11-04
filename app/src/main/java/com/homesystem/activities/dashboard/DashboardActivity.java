@@ -1,9 +1,8 @@
-package com.homesystem.activities;
+package com.homesystem.activities.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,8 +13,14 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.homesystem.R;
+import com.homesystem.activities.dashboard.central_units.CentralUnitsActivity;
+import com.homesystem.activities.dashboard.sensors.SensorsActivity;
+import com.homesystem.activities.login.MainActivity;
+import com.homesystem.activities.profile.ProfileActivity;
+import com.homesystem.activities.add_device.WiFiConfigActivity;
 import com.homesystem.models.User;
 import com.homesystem.utils.SessionManager;
+import com.homesystem.utils.HomeSystemApplication;
 
 public class DashboardActivity extends AppCompatActivity {
     private static final String TAG = "DashboardActivity";
@@ -29,8 +34,15 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageView iconHome, iconAdd, iconProfile;
     private TextView textHome, textAdd, textProfile;
 
+    private void loadSavedLanguage() {
+        String savedLanguage = getSharedPreferences("AppSettings", MODE_PRIVATE)
+                .getString("language", "en");
+        HomeSystemApplication.setAppLocale(this, savedLanguage);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadSavedLanguage();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
@@ -59,6 +71,9 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Set home tab as selected by default
         selectTab(0);
+
+        // Check if returning from device setup
+        checkForNewDeviceAdded();
     }
 
     private void initializeViews() {
@@ -95,11 +110,13 @@ public class DashboardActivity extends AppCompatActivity {
         CardView cardSensors = findViewById(R.id.card_sensors);
 
         cardCentralUnits.setOnClickListener(v -> {
-            Toast.makeText(this, "Central Units - To be implemented", Toast.LENGTH_SHORT).show();
+            Intent openCentralUnitsList = new Intent(this, CentralUnitsActivity.class);
+            startActivity(openCentralUnitsList);
         });
 
         cardSensors.setOnClickListener(v -> {
-            Toast.makeText(this, "Sensors - To be implemented", Toast.LENGTH_SHORT).show();
+            Intent openSensorsList = new Intent(this, SensorsActivity.class);
+            startActivity(openSensorsList);
         });
 
         // Bottom navigation click listeners
@@ -110,13 +127,39 @@ public class DashboardActivity extends AppCompatActivity {
 
         tabAddDevice.setOnClickListener(v -> {
             selectTab(1);
-            Toast.makeText(this, "Add Device - To be implemented", Toast.LENGTH_SHORT).show();
+            // Start device setup flow
+            Intent addDeviceIntent = new Intent(this, WiFiConfigActivity.class);
+            startActivity(addDeviceIntent);
         });
 
         tabProfile.setOnClickListener(v -> {
             selectTab(2);
-            showProfileOptions();
+            Intent settingsIntent = new Intent(this, ProfileActivity.class);
+            startActivity(settingsIntent);
         });
+    }
+
+    private void checkForNewDeviceAdded() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            boolean newDeviceAdded = intent.getBooleanExtra("new_device_added", false);
+            String deviceNetwork = intent.getStringExtra("device_network");
+            String deviceType = intent.getStringExtra("device_type");
+
+            if (newDeviceAdded) {
+                Log.d(TAG, "New device added: " + deviceNetwork + " (Type: " + deviceType + ")");
+
+                // Show success message
+                String message = "Central Unit added successfully!";
+                if (deviceNetwork != null && !deviceNetwork.isEmpty()) {
+                    message = deviceNetwork + " added successfully!";
+                }
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+                // You could also refresh device lists here if needed
+                // refreshDeviceData();
+            }
+        }
     }
 
     private void selectTab(int selectedTab) {
@@ -159,26 +202,6 @@ public class DashboardActivity extends AppCompatActivity {
         textProfile.setTypeface(textProfile.getTypeface(), android.graphics.Typeface.NORMAL);
     }
 
-    private void showProfileOptions() {
-        // Create a simple dialog or menu for profile options
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        builder.setTitle("Profile Options")
-                .setItems(new CharSequence[]{"View Profile", "Settings", "Logout"}, (dialog, which) -> {
-                    switch (which) {
-                        case 0:
-                            Toast.makeText(this, "View Profile - To be implemented", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 1:
-                            Toast.makeText(this, "Settings - To be implemented", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 2:
-                            logout();
-                            break;
-                    }
-                })
-                .show();
-    }
-
     private void logout() {
         Log.d(TAG, "User logging out");
         sessionManager.logout();
@@ -194,8 +217,16 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        checkForNewDeviceAdded();
+    }
+
+    @Override
     public void onBackPressed() {
         // Prevent going back to registration/login after successful login
+        super.onBackPressed();
         moveTaskToBack(true);
     }
 }

@@ -1,12 +1,21 @@
 <resources>
+    <!-- App Info -->
     <string name="app_name">Safe Home</string>
+
+    <!-- Authentication -->
     <string name="et_username">Username</string>
     <string name="btn_login">Login</string>
     <string name="btn_forgot_password">Forgot password</string>
     <string name="btn_create_account">Create account</string>
     <string name="et_password">Password</string>
     <string name="et_authentification">Authentification</string>
+    <string name="email">Email</string>
+    <string name="welcome_back_to_your_smart_home">Welcome to your smart home!</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="remember_your_password">Remember your password?</string>
 
+    <!-- Registration -->
     <string name="register_tv_create_account">Create account</string>
     <string name="register_et_first_name">First name</string>
     <string name="register_et_last_name">Last name</string>
@@ -14,11 +23,111 @@
     <string name="register_et_password">Password</string>
     <string name="register_et_confirm_password">Confirm password</string>
     <string name="btn_register_account">Create account</string>
+
+    <!-- Reset Password -->
     <string name="reset_password_btn_resetPassword">Reset password</string>
     <string name="reset_password_tv_title">Reset password</string>
-    <string name="email">Email</string>
-    <string name="welcome_back_to_your_smart_home">Welcome to your smart home!</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="sign_in">Sign In</string>
-    <string name="remember_your_password">Remember your password?</string>
+
+    <!-- Dashboard -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="control_your_smart_home_from_here">Control your smart home from here</string>
+    <string name="central_units">Central Units</string>
+    <string name="active_sensors">Active Sensors</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="good_day">Good day!</string>
+    <string name="manage_your_home_control_units">Manage your home control units</string>
+    <string name="monitor_all_your_sensors_status">Monitor all your sensors status</string>
+    <string name="add_device">Add Device</string>
+    <string name="profile">Profile</string>
+    <string name="home_page">Home</string>
+
+    <!-- Device Setup -->
+    <string name="add_new_device">Add Device</string>
+    <string name="follow_the_steps_to_set_up_your_device">Follow the steps to set up your device</string>
+    <string name="step_1_of_4">Step 1 of 4</string>
+    <string name="step_2_of_4">Step 2 of 4</string>
+    <string name="enter_wifi_credentials">Enter WiFi Credentials</string>
+    <string name="your_device_will_use_this_wifi_network_to_connect_to_the_internet">Your device will use this WiFi network to connect to the internet</string>
+    <string name="auto_detect_wifi">Auto-detect WiFi</string>
+    <string name="wifi_network_name_ssid">WiFi Network Name (SSID)</string>
+    <string name="wifi_password">WiFi Password</string>
+    <string name="connect_to_device_wifi">Connect to Device WiFi</string>
+    <string name="now_connect_your_phone_to_the_device_s_wifi_network">Now connect your phone to the device\'s WiFi network</string>
+    <string name="instructions">Instructions:</string>
+    <string name="_1_go_to_your_phone_s_wifi_settings">1. Go to your phone\'s WiFi settings</string>
+    <string name="_2_look_for_this_network">2. Look for this network:</string>
+    <string name="safehome_xxx" translatable="false">SafeHome_XXX</string>
+    <string name="_3_use_this_password">3. Use this password:</string>
+    <string name="s_fehom3" translatable="false">S@feHom3</string>
+    <string name="_4_come_back_here_and_tap_i_m_connected">4. Come back here and tap \'I\'m Connected\'</string>
+    <string name="configuring_device">Configuring Device</string>
+    <string name="please_wait_while_we_set_up_your_device_with_the_wifi_credentials">Please wait while we set up your device with the WiFi credentials</string>
+    <string name="setting_up">Setting up…</string>
+    <string name="success">🎉 Success!</string>
+    <string name="your_device_has_been_successfully_added_to_your_home_system">Your device has been successfully added to your home system!</string>
+    <string name="you_can_now_monitor_and_control_it_from_the_dashboard">You can now monitor and control it from the dashboard.</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="step">Step</string>
+    <string name="of">of</string>
+    <string name="i_m_connected">I\'m connected</string>
+
+    <!-- Profile -->
+    <string name="current_password">Current password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm password</string>
+    <string name="save_changes">Save changes</string>
+    <string name="personal_information">Personal information</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="profile_settings">Profile settings</string>
+    <string name="change_name_and_password">Change name and password</string>
+    <string name="app_settings">App settings</string>
+    <string name="language_settings">Change language</string>
+    <string name="account_management">Account management</string>
+    <string name="logout">Logout</string>
+    <string name="sign_out_of_your_account">Sign out</string>
+    <string name="delete_account">Delete account</string>
+    <string name="permanently_delete_your_account">Permanently delete account</string>
+
+    <!-- Languages -->
+    <string name="english">English</string>
+    <string name="română">Romanian</string>
+
+    <!-- Validation Messages -->
+    <string name="first_name_required">First name is required</string>
+    <string name="last_name_required">Last name is required</string>
+    <string name="current_password_required">Current password is required</string>
+    <string name="new_password_required">New password is required</string>
+    <string name="password_requirements">Password must be at least 8 characters</string>
+    <string name="confirm_password_required">Confirm password is required</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="current_password_incorrect">Current password is incorrect</string>
+
+    <!-- Status Messages -->
+    <string name="saving">Saving...</string>
+    <string name="profile_updated_successfully">Profile updated successfully</string>
+    <string name="error_updating_profile">Error updating profile</string>
+    <string name="logged_out_successfully">Logged out successfully</string>
+
+    <!-- General -->
+    <string name="cancel">Cancel</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="change_password">Change password</string>
+    <string name="step_3_of_4">Step 3 of 4</string>
+    <string name="step_4_of_4">Step 4 of 4</string>
+    <string name="connect_to_device_network">Connect to device\'s network</string>
+    <string name="network">WiFi name:</string>
+    <string name="password">Password:</string>
+    <string name="connection_instructions">1. Open WiFi settings 2. Connect to specified network 3. Come back and press \'I\'m Connected\'</string>
+    <string name="open_wifi_settings">Open WiFi Settings</string>
+    <string name="add_your_first_central_unit_to_get_started">Add your first central unit to get started</string>
+    <string name="no_central_unit_found">No Central Unit Found</string>
+    <string name="disarm_system">Disarm System</string>
+    <string name="arm_system">Armed</string>
+    <string name="system_armed">Armed</string>
+    <string name="system_disarmed">Disarmed</string>
+    <string name="status_format" translatable="false">Status: %s</string>
+
 </resources>

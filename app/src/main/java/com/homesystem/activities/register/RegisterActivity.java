@@ -1,4 +1,4 @@
-package com.homesystem.activities;
+package com.homesystem.activities.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.homesystem.R;
+import com.homesystem.activities.dashboard.DashboardActivity;
 import com.homesystem.models.User;
 import com.homesystem.repositories.UserExistsCallback;
 import com.homesystem.repositories.UserRegistrationCallback;

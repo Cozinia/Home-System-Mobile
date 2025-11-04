@@ -8,5 +8,43 @@
     <color name="gray_unselected">#6B7280</color>
     <color name="gray_text">#374151</color>
     <color name="background_light">#F8FAFC</color>
+
+    <!-- Primary Colors -->
+    <color name="blue_dark">#1D4ED8</color>
+    <color name="blue_light">#93C5FD</color>
+
+    <!-- Status Colors -->
+    <color name="status_armed">#EF4444</color>        <!-- Red for armed -->
+    <color name="status_disarmed">#10B981</color>     <!-- Green for disarmed -->
+
+    <!-- Battery Colors -->
+    <color name="battery_high">#10B981</color>        <!-- Green -->
+    <color name="battery_medium">#F59E0B</color>      <!-- Orange -->
+    <color name="battery_low">#EF4444</color>         <!-- Red -->
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_light">#9CA3AF</color>
+
+    <!-- UI Colors -->
+    <color name="gray_light">#D1D5DB</color>
+    <color name="gray_medium">#6B7280</color>
+
+    <!-- Background Colors -->
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F9FAFB</color>
+
+    <!-- Success/Error Colors -->
+    <color name="success">#10B981</color>
+    <color name="error">#EF4444</color>
+    <color name="warning">#F59E0B</color>
+    <color name="info">#3B82F6</color>
+
+    <color name="background_gray">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_dark">#757575</color>
+
 </resources>
 
